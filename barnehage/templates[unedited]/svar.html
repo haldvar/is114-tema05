@@ -1,14 +1,6 @@
 {% extends 'base.html' %}
 <!-- Skriv inn din kode her for å returnere svar for bruksscenario om svar på en søknad. --> 
 {% block content %}
-<html>
-	<h1>
-		{{ displayed_message }}
-	</h1>
-	<h2>
-		{{ tilbud_liste }}
-	</h2>
-</html>
 <table border=1>
 	{% for k,v in data.items() %}
 	<tr>

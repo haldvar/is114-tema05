@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+<!-- Skriv inn din kode her for å returnere svar for bruksscenario om svar på en søknad. --> 
+{% block content %}
+<html>
+	<h1>
+		{{ displayed_message }}
+	</h1>
+	<h2>
+		{{ tilbud_liste }}
+	</h2>
+</html>
+<table border=2>
+    <tr>
+        <th>Søknads id</th>
+        <th>Foresatt 1</th>
+        <th>Foresatt 2</th>
+        <th>Barn 1</th>
+        <th>Barnevern</th>
+        <th>Sykdom i familien</th>
+        <th>Sykdom på barnet</th>
+        <th>Annet</th>
+        <th>Søkte barnehager</th>
+        <th>Har søsken i barnehagen</th>
+        <th>Tidspunkt for oppstart</th>
+        <th>Inntekt brutto</th>
+        <th>Status</th>
+    </tr>
+	{% for index in tabell %}
+    <tr>
+        <td> {{ index.sok_id }} </td>
+        <td> {{ index.foresatt_1 }} </td>
+        <td> {{ index.foresatt_2 }} </td>
+        <td> {{ index.barn_1 }} </td>
+        <td> {{ index.fr_barnevern }} </td>
+        <td> {{ index.fr_sykd_familie }} </td>
+        <td> {{ index.fr_sykd_barn }} </td>
+        <td> {{ index.fr_annet }} </td>
+        <td> {{ index.barnehager_prioritert }} </td>
+        <td> {{ index.sosken__i_barnehagen }} </td>
+        <td> {{ index.tidspunkt_oppstart }} </td>
+        <td> {{ index.brutto_inntekt }} </td>
+        <td> {{ index.status_liste }} </td>
+    </tr>
+	{% endfor %}
+</table>
+{% endblock %}

@@ -2,4 +2,96 @@
 
 {% block content %}
 <p>Alle endringene er skrevet til dbexcel!</p>
+<h1>Her er oversikt over alle lagrede data.</h1>
+
+<h2> </h2>
+
+<table border=1>
+    <tr>
+        <th>Barnets ID</th>
+        <th>Barnets Personnummer</th>
+    </tr>
+	{% for index in barn %}
+	<tr>
+		<td>{{ index.barn_id }}</td>
+		<td>{{ index.barn_pnr }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+<h2> </h2>
+
+<table border=1>
+    <tr>
+        <th>Søknad ID</th>
+        <th>Foresatt 1 ID</th>
+        <th>Foresatt 2 ID</th>
+        <th>Barn ID</th>
+        <th>Barnevern?</th>
+        <th>Sykdom i familie?</th>
+        <th>Sykdom på barnet?</th>
+        <th>Annet?</th>
+        <th>Barnehager prioritert</th>
+        <th>Søsken i barnehagen?</th>
+        <th>Tidspunkt for oppstart</th>
+        <th>Brutto inntekt</th>
+    </tr>
+	{% for index in soknad %}
+	<tr>
+		<td>{{ index.sok_id }}</td>
+		<td>{{ index.foresatt_1 }}</td>
+		<td>{{ index.foresatt_2 }}</td>
+		<td>{{ index.barn_1 }}</td>
+		<td>{{ index.fr_barnevern }}</td>
+		<td>{{ index.fr_sykd_familie }}</td>
+		<td>{{ index.fr_sykd_barn }}</td>
+		<td>{{ index.fr_annet }}</td>
+		<td>{{ index.barnehager_prioritert }}</td>
+		<td>{{ index.sosken__i_barnehagen }}</td>
+		<td>{{ index.tidspunkt_oppstart }}</td>
+		<td>{{ index.brutto_inntekt }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+<h2> </h2>
+
+<table border=1>
+    <tr>
+        <th>Foresatt ID</th>
+        <th>Foresatt Navn</th>
+        <th>Foresatt Adresse</th>
+        <th>Foresatt Telefonnummer</th>
+        <th>Foresatt Personnummer</th>
+    </tr>
+	{% for index in forelder %}
+	<tr>
+		<td>{{ index.foresatt_id }}</td>
+		<td>{{ index.foresatt_navn }}</td>
+		<td>{{ index.foresatt_adresse }}</td>
+		<td>{{ index.foresatt_tlfnr }}</td>
+		<td>{{ index.foresatt_pnr }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+<h2> </h2>
+
+<table border=1>
+    <tr>
+        <th>Barnehage ID</th>
+        <th>Barnehage Navn</th>
+        <th>Barnehage Antall Plasser</th>
+        <th>Barnehage Ledige Plasser</th>
+    </tr>
+	{% for index in barnehage %}
+	<tr>
+		<td>{{ index.barnehage_id }}</td>
+		<td>{{ index.barnehage_navn }}</td>
+		<td>{{ index.barnehage_antall_plasser }}</td>
+		<td>{{ index.barnehage_ledige_plasser }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
 {% endblock %}

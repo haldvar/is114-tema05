@@ -1,7 +1,7 @@
 # kgcontroller module
 import pandas as pd
 import numpy as np
-from dbexcel import *
+from dbexcel import (soknad, forelder, barnehage, barn)
 from kgmodel import *
 
 
@@ -83,7 +83,7 @@ def insert_soknad(s):
                                      s.tidspunkt_oppstart,
                                      s.brutto_inntekt]],
                 columns=soknad.columns), soknad], ignore_index=True)
-    
+
     return soknad
 
 # ---------------------------
@@ -96,6 +96,22 @@ def select_alle_barnehager():
                              r['barnehage_antall_plasser'],
                              r['barnehage_ledige_plasser']),
          axis=1).to_list()
+
+def select_alle_soknader():
+    """Returnerer en liste med alle søknader definert i databasen dbexcel."""
+    return soknad.apply(lambda r: Soknad(r['sok_id'],
+                       r['foresatt_1'],
+                       r['foresatt_2'],
+                       r['barn_1'],
+                       r['fr_barnevern'],
+                       r['fr_sykd_familie'],
+                       r['fr_sykd_barn'],
+                       r['fr_annet'],
+                       r['barnehager_prioritert'],
+                       r['sosken__i_barnehagen'],
+                       r['tidspunkt_oppstart'],
+                       r['brutto_inntekt']),
+         axis=1).to_dict()
 
 def select_foresatt(f_navn):
     """OBS! Ignorerer duplikater"""
@@ -128,7 +144,7 @@ def select_barn(b_pnr):
 # ----- Persistent lagring ------
 def commit_all():
     """Skriver alle dataframes til excel"""
-    with pd.ExcelWriter('kgdata.xlsx', mode='a', if_sheet_exists='replace') as writer:  
+    with pd.ExcelWriter('kgdata.xlsx', engine="openpyxl", mode='a', if_sheet_exists='replace') as writer:  
         forelder.to_excel(writer, sheet_name='foresatt')
         barnehage.to_excel(writer, sheet_name='barnehage')
         barn.to_excel(writer, sheet_name='barn')
